@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+  ============================================
+  你的第一个网页 —— 边看边学版
+  HTML 基本结构：HTML = 网页的"骨架"
+  ------------------------------------------------------------
+  一个网页文件由三大部分组成：
+  1. <!DOCTYPE html>      告诉浏览器"这是最新的HTML5网页"
+  2. <head>               放网页的"设置/后台信息"（标题、样式等）
+  3. <body>               放网页的"真正内容"（用户能看到的部分）
+  ============================================
+-->
+<html lang="zh-CN">
+<head>
+  <!-- 字符编码：告诉浏览器用中文utf-8来读，不然中文会乱码 -->
+  <meta charset="UTF-8">
+  <!-- 让网页在手机上也能自动适配宽度 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 网页标签页上显示的小标题 -->
+  <title>vancle的第一个网页</title>
+  <!-- 网页小图标(favicon)：内联一个简单SVG圆点 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%2316324f'/%3E%3C/svg%3E">
+
+  <!-- ================= CSS 样式区 =================
+       CSS 负责"打扮"网页：颜色、字体、间距、布局都在这
+       好比给骨架穿上衣服、画上妆 -->
+  <style>
+    /* 用变量统一管理配色，改一处全部变，方便 */
+    :root {
+      --navy: #16324f;      /* 主色：深夜蓝（hero背景） */
+      --accent: #2f6f8f;    /* 点缀色：青蓝 */
+      --ink: #1f2937;       /* 正文深灰 */
+      --muted: #5b6b7c;     /* 次要文字灰 */
+      --bg: #f5f7fa;         /* 页面背景浅蓝灰 */
+      --card: #ffffff;       /* 卡片白色 */
+      --line: #e3e8ef;       /* 浅分隔线 */
+    }
+
+    /* * 表示"所有元素"，先统一重置边距，避免浏览器默认间距捣乱 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* body = 整个网页的容器，设置字体和背景 */
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* 顶部大标题区(hero)：深蓝背景，白色文字，居中 */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 70px 20px 60px;
+    }
+    .hero h1 { font-size: 42px; letter-spacing: 2px; }
+    .hero p  { margin-top: 14px; font-size: 18px; color: #cfe0ee; }
+
+    /* 主内容区：限定最大宽度，居中，不然屏幕上字会拉太长 */
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 45px 24px;
+    }
+
+    /* 自我介绍段落 */
+    .intro { font-size: 17px; color: var(--muted); margin-bottom: 40px; }
+    .intro strong { color: var(--ink); }
+
+    /* 三个卡片的网格布局：电脑端一行3个，窄屏自动变1列 */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px 20px;
+    }
+    .card h2 { font-size: 18px; color: var(--navy); margin-bottom: 10px; }
+    .card ul { padding-left: 20px; color: var(--muted); font-size: 15px; }
+    .card li { margin-bottom: 6px; }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* 响应式：当屏幕宽度小于 640px(手机)时，卡片变成1列竖排 */
+    @media (max-width: 640px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ================= 网页内容区 ================= -->
+
+  <!-- 顶部大标题 -->
+  <header class="hero">
+    <h1>vancle</h1>
+    <p>欢迎来到我的网页</p>
+  </header>
+
+  <!-- 主内容 -->
+  <main>
+    <!-- 自我介绍 -->
+    <p class="intro">
+      我是<strong>vancle</strong>，正在跟着哈佛 CS50P 课程学
+      Python，也对 C 语言和网络安全、CTF 很感兴趣。这个页面是我自己做的，
+      见证我从零开始学网页的第一步。
+    </p>
+
+    <!-- 三张内容卡片 -->
+    <div class="cards">
+      <div class="card">
+        <h2>我在学什么</h2>
+        <ul>
+          <li>CS50P 的 Python 基础</li>
+          <li>C 语言入门</li>
+          <li>HTML / CSS 做网页</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>我的兴趣</h2>
+        <ul>
+          <li>网络安全</li>
+          <li>CTF 解题</li>
+          <li>折腾开源项目</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>下一步计划</h2>
+        <ul>
+          <li>学完 CS50P</li>
+          <li>用 GitHub 放代码</li>
+          <li>做出能发布的网页</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>vancle的第一个网页 · 2026 · 实时刷新成功！</footer>
+</body>
+</html>
